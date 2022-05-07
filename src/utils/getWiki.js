@@ -6,10 +6,8 @@ const getWiki = () => {
             const numWords = res.data.extract.split(' ').length;
 
             if (numWords < 75 || numWords > 200) {
-                console.log('searching again');
                 resolve(await getWiki());
             } else {
-                console.log('got wiki');
                 resolve(res.data);
             }
         });
