@@ -5,7 +5,7 @@ import { getAnswer } from '../utils/getAnswer';
 
 const HIDDEN_STYLES = {
     opacity: '0',
-    position: "fixed"
+    position: 'fixed',
 };
 
 const Step2 = ({ wiki, setWiki }) => {
@@ -59,7 +59,7 @@ const Step2 = ({ wiki, setWiki }) => {
     }, [setWiki, query, wiki]);
 
     const formatWithAnswer = () => {
-        if (!answer || query) return <p>{wiki.extract}</p>;
+        if (!answer || query || status2 === STATUSCODES.LOADING) return <p>{wiki.extract}</p>;
 
         let first = wiki.extract.substring(0, answer.start);
         let end = wiki.extract.substring(answer.end);
@@ -88,7 +88,10 @@ const Step2 = ({ wiki, setWiki }) => {
     }
 
     return (
-        <div className='fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2' style={{maxWidth: "600px"}}>
+        <div
+            className='fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
+            style={{ maxWidth: '600px' }}
+        >
             <div className='text-3xl font-bold'>{wiki.title}</div>
             <p className='mt-2'>{formatWithAnswer()}</p>
             <div
@@ -100,11 +103,7 @@ const Step2 = ({ wiki, setWiki }) => {
                 }}
                 className='font-bold rounded-sm inline-block mt-2'
             >
-                {status2 === STATUSCODES.LOADING ? (
-                    "..."
-                ) : (
-                    oldQuery
-                )}
+                {status2 === STATUSCODES.LOADING ? '...' : oldQuery}
             </div>
             <div className='text-lg mt-4 italic'>
                 <div style={{ display: query === '' ? 'block' : 'none' }}>
