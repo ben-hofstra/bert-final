@@ -59,13 +59,13 @@ const Step2 = ({ wiki, setWiki }) => {
     }, [setWiki, query, wiki]);
 
     const formatWithAnswer = () => {
-        if (!answer || query || status2 === STATUSCODES.LOADING) return <p>{wiki.extract}</p>;
+        if (!answer || query || status2 === STATUSCODES.LOADING) return wiki.extract;
 
         let first = wiki.extract.substring(0, answer.start);
         let end = wiki.extract.substring(answer.end);
 
         return (
-            <p>
+            <span>
                 {first}
                 <span
                     style={{ backgroundColor: '#ffcd00', margin: '-2px', padding: '2px' }}
@@ -74,7 +74,7 @@ const Step2 = ({ wiki, setWiki }) => {
                     {answer.answer}
                 </span>
                 {end}
-            </p>
+            </span>
         );
     };
 

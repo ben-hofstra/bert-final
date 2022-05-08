@@ -9,6 +9,9 @@ const getAnswer = (question, context) => {
                     question,
                     context,
                 },
+                options: {
+                    wait_for_model: true,
+                },
             },
             {
                 headers: {
